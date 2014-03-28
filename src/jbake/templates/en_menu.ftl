@@ -1,7 +1,7 @@
   <!-- Fixed navbar -->
         <div class="navbar navbar-inverse navbar-static-top" role="navigation">
           <div class="container">
-            <div class="navbar-header"><a href="javascript:window.location.assign(window.location.href.replace('en/',''));">ру</a><a class="navbar-brand" href="/en/blog">Alexander Semelit's blog</a></div>
+            <div class="navbar-header"><a href="javascript:window.location.assign(window.location.href.replace('en/',''));">ру</a><a class="navbar-brand" href="/blog/en">Alexander Semelit's blog</a></div>
             <div class="navbar-collapse">
               <ul class="nav navbar-nav">
                 <li><a href="/blog/en/about.html">About</a></li>
