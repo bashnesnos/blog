@@ -48,7 +48,7 @@
 	<div class="page-header">
 		<h1>Blog</h1>
 	</div>
-  			<a href="/en/2014/jbake_locale.html"><h1>Localizing your blog with JBake</h1></a>
+  			<a href="/blog/en/2014/jbake_locale.html"><h1>Localizing your blog with JBake</h1></a>
   			<p>27 Март 2014</p>
   			<p><p>(Please disregard dates in russian for now, blog is still in development mode)</p><p>Let's get it started.</p><p>I was inspired by this post <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">about authoring a blog with JBake and jbake-gradle-plugin</a>; so my first post would be on the same topic (my apologies for too many 'posts' and 'blogs' in one sentence). First of all because it has something to do with Gradle (which I love) and JBake (which is something to learn) in the second turn.</p><p>My first time blog was generated, looked nice. What can one wish more? Well, I wish there was kind of a localization capability. It's not common at all, but when you want something and it is not there - you are not completely satisfied. So I decided to try and <del>break everything</del>add such a capability.</p><p>The idea was: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following post transformation:</p>
 <pre><code>src\jbake\content\blog\2014\jbake_locale.md -&gt; \blog\2014\jbake_locale.html (original)
