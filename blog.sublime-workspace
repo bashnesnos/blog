@@ -55,104 +55,19 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "src/jbake/content/blog/2014/jbake_locale.md",
-			"settings":
-			{
-				"buffer_size": 806,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/jbake/content/blog/2014/en_jbake_locale.md",
-			"settings":
-			{
-				"buffer_size": 951,
-				"line_ending": "Windows",
-				"name": "title=JBake with localization"
-			}
-		},
-		{
-			"file": "build.gradle",
-			"settings":
-			{
-				"buffer_size": 394,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/jbake/jbake.properties",
-			"settings":
-			{
-				"buffer_size": 227,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_index.ftl",
-			"settings":
-			{
-				"buffer_size": 482,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_page.ftl",
-			"settings":
-			{
-				"buffer_size": 265,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_post.ftl",
-			"settings":
-			{
-				"buffer_size": 265,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_menu.ftl",
-			"settings":
-			{
-				"buffer_size": 615,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_feed.ftl",
-			"settings":
-			{
-				"buffer_size": 945,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/templates/en_archive.ftl",
-			"settings":
-			{
-				"buffer_size": 603,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/jbake/content/en_about.html",
-			"settings":
-			{
-				"buffer_size": 859,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "Packages/User/jbake.sublime-build",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 268.0,
 		"selected_items":
 		[
+			[
+				"",
+				"About"
+			]
 		],
-		"width": 0.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -169,23 +84,52 @@
 	},
 	"file_history":
 	[
-		"/C/Users/asemelit/Projects/blog/src/jbake/content/blog/2014/third-post.md",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_menu.ftl",
+		"/C/Users/asemelit/.gradle/gradle.properties",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/menu.ftl",
-		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-menu.ftl",
-		"/C/Users/asemelit/Projects/blog/src/jbake/jbake.properties",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_header.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/header.ftl",
-		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-header.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_feed.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/feed.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/index.ftl",
-		"/C/Users/asemelit/Documents/Andrew/final/indx.htm",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_index.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_archive.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/archive.ftl",
+		"/C/Users/asemelit/Projects/blog/en/index.html",
+		"/C/Users/asemelit/Projects/blog/index.html",
+		"/C/Users/asemelit/Projects/blog/publish.gradle",
+		"/C/Users/asemelit/Projects/blog/debug.log",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/2014/en_jbake_locale.md",
+		"/C/Users/asemelit/.gitconfig",
+		"/C/Users/asemelit/.ssh/known_hosts",
+		"/C/Users/asemelit/reg2kh.py",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/2014/jbake_locale.md",
+		"/C/Users/asemelit/Projects/blog/src/jbake/jbake.properties",
+		"/C/Users/asemelit/.ssh/config",
+		"/C/Users/asemelit/.ssh/github_rsa",
+		"/C/Users/asemelit/.ssh/github_rsa.pub",
+		"/C/Users/asemelit/AppData/Roaming/Sublime Text 2/Packages/User/jbake.sublime-build",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/about.html",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/en_about.html",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/blog/2014/jbake_locale.md",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/blog/2014/en_jbake_locale.md",
+		"/C/Users/asemelit/Projects/blog/.gitignore",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_footer.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/footer.ftl",
+		"/C/Users/asemelit/Projects/blog/build.gradle",
+		"/C/Users/asemelit/Projects/blog/settings.gradle",
+		"/C/Users/asemelit/Projects/blog/src/jbake/assets/favicon.ico",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_page.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en_post.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/content/blog/2014/third-post.md",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-menu.ftl",
+		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-header.ftl",
+		"/C/Users/asemelit/Documents/Andrew/final/indx.htm",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-footer.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/assets/css/base.css",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-index.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/content/blog/2013/first-post.html",
-		"/C/Users/asemelit/AppData/Roaming/Sublime Text 2/Packages/User/jbake.sublime-build",
-		"/C/Users/asemelit/Projects/blog/src/jbake/templates/archive.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-archive.ftl",
-		"/C/Users/asemelit/Projects/blog/src/jbake/templates/feed.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-feed.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-page.ftl",
 		"/C/Users/asemelit/Projects/blog/src/jbake/templates/en-post.ftl",
@@ -226,6 +170,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_winreg",
 			"fnFilter",
 			"<td .*?>",
 			"<tr .*>",
@@ -237,6 +182,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"winreg",
 			"<td>",
 			"<tr>",
 			""
@@ -250,301 +196,8 @@
 	"groups":
 	[
 		{
-			"selected": 7,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/jbake/content/blog/2014/jbake_locale.md",
-					"settings":
-					{
-						"buffer_size": 806,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								806
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/jbake/content/blog/2014/en_jbake_locale.md",
-					"settings":
-					{
-						"buffer_size": 951,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								51,
-								51
-							]
-						],
-						"settings":
-						{
-							"auto_name": "title=JBake with localization",
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "build.gradle",
-					"settings":
-					{
-						"buffer_size": 394,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								241,
-								241
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/jbake/jbake.properties",
-					"settings":
-					{
-						"buffer_size": 227,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								150,
-								150
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/JavaProperties.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/jbake/templates/en_index.ftl",
-					"settings":
-					{
-						"buffer_size": 482,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								363,
-								363
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/jbake/templates/en_page.ftl",
-					"settings":
-					{
-						"buffer_size": 265,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								253,
-								253
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/jbake/templates/en_post.ftl",
-					"settings":
-					{
-						"buffer_size": 265,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								253,
-								253
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/jbake/templates/en_menu.ftl",
-					"settings":
-					{
-						"buffer_size": 615,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								211,
-								211
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "src/jbake/templates/en_feed.ftl",
-					"settings":
-					{
-						"buffer_size": 945,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								162,
-								162
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "src/jbake/templates/en_archive.ftl",
-					"settings":
-					{
-						"buffer_size": 603,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								393,
-								393
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "src/jbake/content/en_about.html",
-					"settings":
-					{
-						"buffer_size": 859,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								85,
-								85
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

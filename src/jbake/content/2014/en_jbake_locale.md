@@ -12,7 +12,7 @@ I was inspired by this post [about authoring a blog with JBake and jbake-gradle-
 
 My first time blog was generated, looked nice. What can one wish more? Well, I wish there was kind of a localization capability. It's not common at all, but when you want something and it is not there - you are not completely satisfied. So I decided to try and <del>break everything</del>add such a capability.
 
-The idea was: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following post transformation:
+The idea is: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following transformation will occur:
 
     src\jbake\content\blog\2014\jbake_locale.md -> \blog\2014\jbake_locale.html (original)
     src\jbake\content\blog\2014\en_jbake_locale.md -> \en\blog\2014\jbake_locale.html (localized)
