@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>БАС</title>
-    <link>http://bashnesnos.github.io/blog/</link>
+    <link>http://bashnesnos.github.io/blog</link>
     <atom:link href="http://bashnesnos.github.io/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>Блог Александра Семелита</description>
     <language>ru</language>
-    <pubDate>Пт, 28 мар 2014 16:04:31 +0400</pubDate>
-    <lastBuildDate>Пт, 28 мар 2014 16:04:31 +0400</lastBuildDate>
+    <pubDate>Сб, 29 мар 2014 02:25:31 +0400</pubDate>
+    <lastBuildDate>Сб, 29 мар 2014 02:25:31 +0400</lastBuildDate>
 
     <item>
       <title>Пишем блог на двух языках с помощью JBake</title>
-      <link>http://bashnesnos.github.io/blog//2014/jbake_locale.html</link>
+      <link>http://bashnesnos.github.io/blog/2014/jbake_locale.html</link>
       <pubDate>Чт, 27 мар 2014 00:00:00 +0400</pubDate>
       <guid isPermaLink="false">/2014/jbake_locale.html</guid>
       	<description>
-	&lt;p&gt;Что ж, с почином.&lt;/p&gt;&lt;p&gt;Поскольку блог начался с прочтения этого поста &lt;a href=&quot;http://melix.github.io/blog/2014/02/hosting-jbake-github.html&quot;&gt;про создание блога с помощью JBake и jbake-gradle-plugin&lt;/a&gt;, то мой первый пост будет тоже на эту тему (и прощу прощения за обилие &quot;постов&quot; и &quot;блогов&quot; в этом предложении). Мне определённо нравится Gradle (все текущие проекты собираю с ним), да и выпечка привлекает, так что решил попробовать.&lt;/p&gt;&lt;p&gt;Всё заработало отлично. Но вот незадача, локализации в JBake нет. Т.е. блог можно вести на одном языке. Так-то больше одного редко кому понадобится, но почему бы и не вести на двух языках, была бы возможность. На том и порешил попытаться &lt;del&gt;всё сломать&lt;/del&gt;добавить такую возможность.&lt;/p&gt;&lt;p&gt;Идея такая: локализованные страницы во время сборки отправлять в отдельную папку. Так как блог предполагается статический, то это самый простой и убийственый вариант. Переключение между локализациями будет заключатся в вырезании из/добавления в URL нужного нам куска. Например:&lt;/p&gt;
+	&lt;p&gt;Что ж, с почином.&lt;/p&gt;&lt;p&gt;Поскольку блог начался с прочтения этого поста &lt;a href=&quot;http://melix.github.io/blog/2014/02/hosting-jbake-github.html&quot;&gt;про создание блога с помощью JBake и jbake-gradle-plugin&lt;/a&gt;, то мой первый пост будет тоже на эту тему (и прощу прощения за обилие &quot;постов&quot; и &quot;блогов&quot; в этом предложении). Мне определённо нравится Gradle (все текущие проекты собираю с ним), да и выпечка привлекает, так что решил попробовать.&lt;/p&gt;&lt;p&gt;Всё заработало отлично. Но вот незадача, локализации в JBake нет. Т.е. блог можно вести на одном языке. Так-то больше одного редко кому понадобится, но почему бы и не вести на двух языках, была бы возможность. На том и порешил попытаться &lt;del&gt;всё сломать&lt;/del&gt;добавить такую возможность.&lt;/p&gt;&lt;p&gt;Идея такая: локализованные страницы во время сборки отправлять в отдельную папку. Так как блог предполагается статический, то это самый простой и убийственый вариант. Переключение между локализациями будет заключатся в вырезании из/добавления в URL нужного нам куска. Например, будет происходить следующая трансформация:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;src\jbake\content\2014\jbake_locale.md -&amp;gt; \2014\jbake_locale.html (оригинальная страница)
 src\jbake\content\2014\en_jbake_locale.md -&amp;gt; \en\2014\jbake_locale.html (локализованная)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Т.е. чтобы переключиться на английскую версию в данном примере, надо будет на оригинальной страниjaце в URL добавить &lt;strong&gt;en\&lt;/strong&gt;. Что и прозойдёт, если клинкуть &lt;a href=&quot;/blog/en/2014/jbake_locale.html&quot;&gt;сюда&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Экономия заключатся в том, что в исходниках не надо копировать дерево папок туда-сюда, и локализованный с нелокализованным лежат рядышком. JBake сам сгенерит всё, что надо.&lt;/p&gt;&lt;p&gt;Жёстких ограничений нет, чтобы работало надо придерживаться следующих правил:&lt;br/&gt;* Имя файла с локализацией должно отличаться от имени оригинала только приставкой &lt;em&gt;localeId_&lt;/em&gt; (в данном примере &lt;strong&gt;en_&lt;/strong&gt;)&lt;br/&gt;* Нужно добавить в jbake.properties типы шаблонов, которые будут использоваться для генерации локализованных версий страниц&lt;br/&gt;* Имена шаблонов должны начинаться с &lt;em&gt;localeId_&lt;/em&gt; (в данном примере &lt;strong&gt;en_&lt;/strong&gt;)&lt;br/&gt;* В шаблонах надо не забывать приставлять &lt;em&gt;localeId_&lt;/em&gt; при ссылках на другие шаблоны и при проставлении гиперссылок&lt;/p&gt;&lt;p&gt;В общем-то, &lt;em&gt;localeId_&lt;/em&gt; определяется из jbake.properties. Если указан темплэйт вида &lt;strong&gt;en_&lt;/strong&gt;post, &lt;strong&gt;en_&lt;/strong&gt; будет определяться как один из &lt;em&gt;localeId_&lt;/em&gt;.&lt;/p&gt;&lt;p&gt;Итого, вот как выглядит jbake.properties для моего блога:&lt;/p&gt;
