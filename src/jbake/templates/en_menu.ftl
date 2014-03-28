@@ -8,6 +8,9 @@
                 <li><a href="/en/about.html">About</a></li>
                 <li><a href="/en/${config.feed_file}">Subscribe</a></li>
               </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/bashnesnos"><i class="fa fa-github"></i></a></li>
+              </ul>
             </div>
           </div>
         </div>
