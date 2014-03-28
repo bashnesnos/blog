@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Semelit's blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Alexander Semelit">
+    <meta name="keywords" content="programming, groovy, java, blog">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/asciidoctor.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body>
+    <div id="wrap">
+   	
+  <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header"><a href="javascript:window.location.assign(window.location.href.replace('en/',''));">ру</a><a class="navbar-brand" href="/en/blog">Alexander Semelit's blog</a></div>
+            <div class="navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/blog/en/about.html">About</a></li>
+                <li><a href="/blog/en/feed.xml">Subscribe</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://github.com/bashnesnos"><i class="fa fa-github"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <div class="container">
+	<div class="page-header">
+		<h1>Blog</h1>
+	</div>
+  			<a href="/en/2014/jbake_locale.html"><h1>Localizing your blog with JBake</h1></a>
+  			<p>27 Март 2014</p>
+  			<p><p>(Please disregard dates in russian for now, blog is still in development mode)</p><p>Let's get it started.</p><p>I was inspired by this post <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">about authoring a blog with JBake and jbake-gradle-plugin</a>; so my first post would be on the same topic (my apologies for too many 'posts' and 'blogs' in one sentence). First of all because it has something to do with Gradle (which I love) and JBake (which is something to learn) in the second turn.</p><p>My first time blog was generated, looked nice. What can one wish more? Well, I wish there was kind of a localization capability. It's not common at all, but when you want something and it is not there - you are not completely satisfied. So I decided to try and <del>break everything</del>add such a capability.</p><p>The idea was: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following post transformation:</p>
+<pre><code>src\jbake\content\blog\2014\jbake_locale.md -&gt; \blog\2014\jbake_locale.html (original)
+src\jbake\content\blog\2014\en_jbake_locale.md -&gt; \en\blog\2014\jbake_locale.html (localized)
+</code></pre><p>I.e. to switch back to the original in the given example, we would to remove <strong>en\</strong> from the URL. Which will happen if you click <a href="/blog/2014/jbake_locale.html">here</a></p><p>By implementing that feature we are saving ourselves from copying and maintaining all the folder structure in our sources for all the kinds of locales. A nice and automatic tool will bake it for us.</p><p>Convention is the following:<br/>* Localized post file name should differ from original only by <em>localeId_</em> prefix (in my case <strong>en_</strong>)<br/>* Add the localized templates into jbake.properties<br/>* Localized template name should start from <em>localeId_</em> (in my case <strong>en_</strong>)<br/>* Keep the <em>localeId_</em> in mind when populating links and includes inside of the templates</p><p>I will open you the secret: <em>localeId_</em> is being derived from your template declarations in jbake.properties. If you have a template with name <strong>en_</strong>post, <strong>en_</strong> would become one of your <em>localeId_</em></p><p>Here is jbake.properties of my blog:</p>
+<pre><code>site.host=http://localhost:8080
+template.en_post.file=en_post.ftl
+template.en_page.file=en_page.ftl
+template.en_index.file=en_index.ftl
+template.en_archive.file=en_archive.ftl
+template.en_feed.file=en_feed.ftl
+render.tags=false
+</code></pre><p>The localized templates list is bigger though (en_menu, en_footer are not an outstanding document types, they are just being included by other localized templates):</p>
+<pre><code>en_archive.ftl
+en_feed.ftl
+en_footer.ftl
+en_header.ftl
+en_index.ftl
+en_menu.ftl
+en_page.ftl
+en_post.ftl
+</code></pre><p>At the moment it works for Freemarker only, I would go on with others if my enhancement would be approved. And in that case it would be my first relatively significant contribution to the open-source!</p></p>
+	
+	<hr />
+	
+	<p>Older posts are available in the <a href="/blog/en/archive.html">archive</a>.</p>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="credit pull-right"><a class="btn btn-default" href="#">Back to top</a></p>
+        <p class="muted credit">Alexander Semelit &copy; 2014 | Mixed with <a href="http://twitter.github.com/bootstrap/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.3.0-SNAPSHOT</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery-1.11.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/run_prettify.js"></script>
+    <script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+  </body>
+</html>
