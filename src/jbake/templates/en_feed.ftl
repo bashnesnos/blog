@@ -3,7 +3,7 @@
   <channel>
     <title>Semelit's blog</title>
     <link>${config.site_host}/en/</link>
-    <atom:link href="${config.site_host}/en/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${config.site_host}en/feed.xml" rel="self" type="application/rss+xml" />
     <description>Alexander Semelit's blog</description>
     <language>en-gb</language>
     <pubDate>${published_date?string("EEE, d MMM yyyy HH:mm:ss Z")}</pubDate>
