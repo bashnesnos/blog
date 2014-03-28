@@ -15,6 +15,6 @@
 	
 	<hr />
 	
-	<p>Посмотреть на старые посты в <a href="/${config.archive_file}">архиве</a>.</p>
+	<p>Посмотреть на старые посты в <a href="/blog/${config.archive_file}">архиве</a>.</p>
 
 <#include "footer.ftl">
