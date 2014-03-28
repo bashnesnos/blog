@@ -55,6 +55,70 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/jbake/jbake.properties",
+			"settings":
+			{
+				"buffer_size": 238,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/jbake/templates/en_feed.ftl",
+			"settings":
+			{
+				"buffer_size": 945,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/jbake/templates/feed.ftl",
+			"settings":
+			{
+				"buffer_size": 921,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/jbake/templates/menu.ftl",
+			"settings":
+			{
+				"buffer_size": 879,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "build.gradle",
+			"settings":
+			{
+				"buffer_size": 558,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "publish.gradle",
+			"settings":
+			{
+				"buffer_size": 292,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/jbake/content/2014/en_jbake_locale.md",
+			"settings":
+			{
+				"buffer_size": 3140,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/jbake/content/2014/jbake_locale.md",
+			"settings":
+			{
+				"buffer_size": 3184,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "Packages/User/jbake.sublime-build",
 	"command_palette":
@@ -196,8 +260,231 @@
 	"groups":
 	[
 		{
+			"selected": 7,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/jbake/jbake.properties",
+					"settings":
+					{
+						"buffer_size": 238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								42,
+								42
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/JavaProperties.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/jbake/templates/en_feed.ftl",
+					"settings":
+					{
+						"buffer_size": 945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								211,
+								211
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/jbake/templates/feed.ftl",
+					"settings":
+					{
+						"buffer_size": 921,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/jbake/templates/menu.ftl",
+					"settings":
+					{
+						"buffer_size": 879,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "build.gradle",
+					"settings":
+					{
+						"buffer_size": 558,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								453,
+								453
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "publish.gradle",
+					"settings":
+					{
+						"buffer_size": 292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								292,
+								292
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/jbake/content/2014/en_jbake_locale.md",
+					"settings":
+					{
+						"buffer_size": 3140,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								932,
+								932
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/jbake/content/2014/jbake_locale.md",
+					"settings":
+					{
+						"buffer_size": 3184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1563,
+								1563
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 495.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
