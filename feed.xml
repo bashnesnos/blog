@@ -6,8 +6,8 @@
     <atom:link href="http://bashnesnos.github.io/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>Блог Александра Семелита</description>
     <language>ru</language>
-    <pubDate>Чт, 3 апр 2014 12:41:22 +0400</pubDate>
-    <lastBuildDate>Чт, 3 апр 2014 12:41:22 +0400</lastBuildDate>
+    <pubDate>Чт, 3 апр 2014 13:28:25 +0400</pubDate>
+    <lastBuildDate>Чт, 3 апр 2014 13:28:25 +0400</lastBuildDate>
 
     <item>
       <title>Пишем блог на двух языках с помощью JBake</title>
