@@ -104,6 +104,23 @@
 			}
 		},
 		{
+			"file": "/C/Users/asemelit/.gradle/gradle.properties",
+			"settings":
+			{
+				"buffer_size": 77,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/asemelit/.ssh/known_hosts",
+			"settings":
+			{
+				"buffer_size": 407,
+				"line_ending": "Windows",
+				"name": "github.com,192.30.252.129 ssh-rsa AAAAB3NzaC1yc2EA"
+			}
+		},
+		{
 			"file": "src/jbake/content/2014/en_jbake_locale.md",
 			"settings":
 			{
@@ -260,7 +277,7 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -385,8 +402,8 @@
 						"selection":
 						[
 							[
-								453,
-								453
+								424,
+								424
 							]
 						],
 						"settings":
@@ -431,6 +448,59 @@
 				},
 				{
 					"buffer": 6,
+					"file": "/C/Users/asemelit/.gradle/gradle.properties",
+					"settings":
+					{
+						"buffer_size": 77,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								77,
+								77
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/JavaProperties.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/Users/asemelit/.ssh/known_hosts",
+					"settings":
+					{
+						"buffer_size": 407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								407,
+								407
+							]
+						],
+						"settings":
+						{
+							"auto_name": "github.com,192.30.252.129 ssh-rsa AAAAB3NzaC1yc2EA",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "src/jbake/content/2014/en_jbake_locale.md",
 					"settings":
 					{
@@ -458,7 +528,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "src/jbake/content/2014/jbake_locale.md",
 					"settings":
 					{
@@ -469,8 +539,8 @@
 						"selection":
 						[
 							[
-								1563,
-								1563
+								2705,
+								2705
 							]
 						],
 						"settings":
