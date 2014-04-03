@@ -27,6 +27,17 @@
     <link rel="shortcut icon" href="favicon.ico">
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
     <div id="wrap">
    	
   <!-- Fixed navbar -->
@@ -48,8 +59,17 @@
 	<div class="page-header">
 		<h1>Blog</h1>
 	</div>
+
   			<a href="/blog/en/2014/jbake_locale.html"><h1>Localizing your blog with JBake</h1></a>
   			<p>27 Март 2014</p>
+  			
+  			<div class="container">
+  			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Localizing your blog with JBake" data-url="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-via="AlexanderSemelit" data-lang="en">Twitter</a>
+			<div class="g-plusone" data-size="medium" data-href="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html"></div>
+			<script type="IN/Share" data-url="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-counter="right"></script>
+			<div class="fb-like" data-href="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+			</div>
+
   			<p><p>(Please disregard dates in russian for now, blog is still in development mode)</p><p>Let's get it started.</p><p>I was inspired by this post <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">about authoring a blog with JBake and jbake-gradle-plugin</a>; so my first post would be on the same topic (my apologies for too many 'posts' and 'blogs' in one sentence). First of all because it has something to do with Gradle (which I love) and JBake (which is something to learn) in the second turn.</p><p>My first time blog was generated, looked nice. What can one wish more? Well, I wish there was kind of a localization capability. It's not common at all, but when you want something and it is not there - you are not completely satisfied. So I decided to try and <del>break everything</del>add such a capability.</p><p>The idea is: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following transformation will occur:</p>
 <pre><code>src\jbake\content\blog\2014\jbake_locale.md -&gt; \blog\2014\jbake_locale.html (original)
 src\jbake\content\blog\2014\en_jbake_locale.md -&gt; \en\blog\2014\jbake_locale.html (localized)
@@ -71,6 +91,7 @@ en_menu.ftl
 en_page.ftl
 en_post.ftl
 </code></pre><p>At the moment it works for Freemarker only, I would go on with others if my enhancement would be approved. And in that case it would be my first relatively significant contribution to the open-source!</p></p>
+  			<p><a href="/blog/en/2014/jbake_locale.html#disqus_thread">Comments</a></p>
 	
 	<hr />
 	
@@ -94,5 +115,29 @@ en_post.ftl
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/run_prettify.js"></script>
     <script src="http://cdn.lanyrd.net/badges/person-v1.min.js"></script>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'bashneblog'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+
+    (function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"));
+    </script>    
+    <script type="text/javascript">
+      window.___gcfg = {lang: 'en'};
+
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
   </body>
 </html>
