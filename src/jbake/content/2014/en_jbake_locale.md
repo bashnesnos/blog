@@ -4,8 +4,6 @@ type=post
 tags=jbake, localization
 status=published
 ~~~~~~
-(Please disregard dates in russian for now, blog is still in development mode)
-
 Let's get it started.
 
 I was inspired by this post [about authoring a blog with JBake and jbake-gradle-plugin](http://melix.github.io/blog/2014/02/hosting-jbake-github.html); so my first post would be on the same topic (my apologies for too many 'posts' and 'blogs' in one sentence). First of all because it has something to do with Gradle (which I love) and JBake (which is something to learn) in the second turn.
