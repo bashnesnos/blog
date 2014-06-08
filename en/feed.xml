@@ -6,9 +6,113 @@
     <atom:link href="http://bashnesnos.github.io/blog/en/feed.xml" rel="self" type="application/rss+xml" />
     <description>Alexander Semelit's blog</description>
     <language>en-gb</language>
-    <pubDate>Thu, 3 Apr 2014 13:28:25 +0400</pubDate>
-    <lastBuildDate>Thu, 3 Apr 2014 13:28:25 +0400</lastBuildDate>
+    <pubDate>Sun, 8 Jun 2014 14:19:59 +0400</pubDate>
+    <lastBuildDate>Sun, 8 Jun 2014 14:19:59 +0400</lastBuildDate>
 
+    <item>
+      <title>Migrating to MS SQL with bcp and Groovy</title>
+      <link>http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html</link>
+      <pubDate>Wed, 28 May 2014 00:00:00 +0400</pubDate>
+      <guid isPermaLink="false">/en/2014/migrate_groovy.html</guid>
+      	<description>
+	&lt;p&gt;First of all, why bcp and Groovy and not one of the existing tools like Flyway or something else?&lt;br/&gt;Well, migration is a one-off process to my mind, so why not script it; so you have a 100% percent of knowledge and control of how you do it. And having Groovy as a &apos;script&apos; language brings lots of stuff to turn your &apos;script&apos; into a tool really.&lt;/p&gt;&lt;p&gt;As an input I had a set of plain text pipe-delimeted table extracts. Before I could load those I needed to produce a new set of files having old data merged, transformed and new PK added (simple bigint increment). I could&apos;ve loaded everything into the DB and do that with SQL, but why. At worst I had an 8 million records hashmap in memory, other then that everything was dumped into a file straight away.&lt;/p&gt;&lt;p&gt;On the good side, as a result of my migration I get a set of files which could be used to create/restore a ready-to-go DB wherever I need.&lt;/p&gt;&lt;p&gt;I&apos;ve created a builder-like class Migrator to encapsulate file traversing, regex matching and writing to output. &lt;a href=&quot;https://github.com/bashnesnos/scripts/blob/master/migrator/Migrator.groovy&quot;&gt;Here&apos;s the source&lt;/a&gt;. It also helps to increase readability I hope and reduces the size of the main migration script. It is going to be a core of my migration script.&lt;/p&gt;&lt;p&gt;Now we&apos;ve came to the migration script itself, which basically will do the following:&lt;br/&gt;1. Define source files&lt;br/&gt;2. For each source file defined:&lt;br/&gt; 2.1. Get file&lt;br/&gt; 2.2. Transform each line and save it to a declared output file&lt;br/&gt; 2.3. Upload results&lt;/p&gt;&lt;p&gt;And here how we do it (ommiting the declaration and utility methods) and &lt;a href=&quot;https://github.com/bashnesnos/scripts/blob/master/migrator/example/migrate.groovy&quot;&gt;here&apos;s the example source too&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;migrator.with { 
+    //defining a source: 
+    source { //loading rainbow table: encrypted -&amp;gt; unencrypted
+        inputFile &amp;quot;(?i)top_entity_tab.*&amp;quot;
+        outputFile &amp;quot;topEntity.bcp&amp;quot;
+        linePattern(/(\w+)$rT.+?$rT(.+?)$rT.*/)
+        onMatch { entityId, encrypted -&amp;gt; //transforming a source
+            rainbow[encrypted] = entityId
+            &amp;quot;$entityId${sT}1&amp;quot;
+        }
+        tableName &amp;quot;[dbo].[TopEntity]&amp;quot;
+    }
+
+    source { //grabbing code-set A
+        inputFile &amp;quot;(?i)code_tab.*&amp;quot;
+        outputFile  &amp;quot;Code.bcp&amp;quot;
+        onMatch {line -&amp;gt; line} //keeping the same
+    }
+
+    source { //grabbing code-set B
+        inputFile &amp;quot;(?i)another_code_tab.*&amp;quot;
+        outputFile &amp;quot;Code.bcp&amp;quot;
+        appendOutput true
+        onMatch {line -&amp;gt; line} //keeping the same
+        doLast {
+            new File(outputFile).append(&amp;quot;?|Code type unknown (migration)|\r\n&amp;quot;) //adding new type, just an example
+        }
+    }
+
+    source { //uploading merged Code.bcp here, because we needed to add additional line in the of code-set B grabbing
+        inputFile &amp;quot;Code.bcp&amp;quot;
+        tableName &amp;quot;[dbo].[Code]&amp;quot;
+    }
+
+    source {
+        inputFile &amp;quot;(?i)entry_tab.*&amp;quot;
+        outputFile &amp;quot;Entry.bcp&amp;quot;
+        linePattern(/(^(\w+)$rT([- 0-9:]+)$rT)((?:(\d{4})-(\d{2})-(\d{2}).*?)?$rT)([MD]?)($rT(?:\d{4}-\d{2}-\d{2})?)($rT.*$rT[DWR]$rT.*?$rT)0x.*?$rT(.*)/)
+        onMatch { Matcher mtchr -&amp;gt; 
+            def master = mtchr.group(2)
+            def entryTime = mtchr.group(3)
+            def lastUpdated = mtchr.group(11)
+            return &amp;quot;${mtchr.group(1)}${toDateString(entryTimeFormat,mtchr.group(5), mtchr.group(6),mtchr.group(7),mtchr.group(8))}${mtchr.group(9)}${mtchr.group(10)}$lastUpdated${sT}${sT}${algyId++}&amp;quot;
+        }
+    }
+
+    source {
+        inputFile &amp;quot;(?i)descr_tab.*&amp;quot;
+        outputFile &amp;quot;Desciption.bcp&amp;quot;
+        linePattern(/((?:.*?$rT){2})(.*?)?((?:$rT?.*?){3}$rT)(\d{4}-\d{2}-\d{2}$rT.*)/)
+        onMatch { Matcher mtchr -&amp;gt;
+            def ids = mtchr.group(1)
+            def encrypted = ids.substring(ids.indexOf(&amp;quot;$sT&amp;quot;) + 1, ids.lastIndexOf(&amp;quot;$sT&amp;quot;))
+            def orig = rainbow[encrypted]
+            if (orig != null) {
+                ids = ids.replace(encrypted, orig)
+                return lastline = &amp;quot;${ids}${mtchr.group(2)}${mtchr.group(3)}${mtchr.group(4)}&amp;quot;
+            }
+            else {
+                if (skippedLinesFileWriter != null) {
+                    skippedLinesFileWriter.println &amp;quot;descr_tab\n${mtchr.group(0)}&amp;quot;
+                }
+                else {
+                    terminate &amp;quot;Orphaned descr detected\n ${mtchr.group(0)}&amp;quot;
+                }                
+            }
+            return
+        }
+        tableName &amp;quot;[dbo].[Description]&amp;quot;
+        doLast { 
+            LOGGER.info lastline
+            createIdentity(&amp;#39;DescrId&amp;#39;, lastline.substring(0, lastline.indexOf(&amp;quot;$sT&amp;quot;)))
+        }
+    }
+
+
+    upload { table, inFile -&amp;gt; //calling bcp or making a batch file
+        formatFile = makeFormatFile(table, inFile)
+        LOGGER.info &amp;quot;Uploading data to [$server].[$dbname].$table&amp;quot;
+        execAndWait &amp;quot;bcp $table in ${getFileNameFromPath(inFile)} -S $server -d $dbname -b 500000 -m 0 -f $formatFile -T -e skipped_${getFileNameFromPath(inFile).replace(&amp;#39;.bcp&amp;#39;,&amp;#39;&amp;#39;)}.txt&amp;quot;
+        printTimePassed(&amp;quot;Tranfser of ${getFileNameFromPath(inFile)} finished.&amp;quot;)
+    }
+
+    //doing indexes
+    LOGGER.info &amp;quot;Creating indexes&amp;quot;
+    execAndWait &amp;quot;sqlcmd -S $server -d $dbname -E -i allIndexes.sql&amp;quot;
+
+    if (options.b) {
+        batchFileWriter.println &amp;#39;echo &amp;quot;Migration successfull!&amp;quot;&amp;#39;
+        batchFileWriter.close()
+    }
+
+    printTimePassed(&amp;quot;Migration successful!&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It&apos;s a simplified example of what I had, but it has some key things like loading a hashmap with data, joining input files etc.&lt;br/&gt;As you can see, it is pretty straight-forward. I&apos;ll just add some comments for clarity:&lt;br/&gt;* Sources are processed in the definition order, one source file could defined as many times as you need (i.e. no unique checks at all).&lt;br/&gt;* Input files are defined with regexes as well (as I don&apos;t care about any date markes or case problems in the file name)&lt;br/&gt;* In this case, processing is triggered by the &apos;upload&apos; closure which in it&apos;s turn is being called per each source when all the lines are processed. And only if the &apos;tableName&apos; is specified (i.e. where to upload)&lt;br/&gt;* &apos;onMatch&apos; - is a transformation closure, called for each line in the source file&lt;br/&gt;* &apos;doLast&apos; - an Gradle-inspired callback closure, called per each file and when &apos;upload&apos; closure (if any) has finished; so it&apos;s the last action taken against &apos;this&apos; closure.&lt;br/&gt;* &apos;printTimePassed&apos;, &apos;terminate&apos; - are Migrator&apos;s helper methods&lt;/p&gt;&lt;p&gt;And that&apos;s done. These scripts require nothing but Groovy (tested in 2.2.1 but will work in previous versions where typed Closures are allowed I guess too) or could be compiled and run just with Java (though migrate.groovy will require apache-cli apart from groovy-all). Pretty light-weight and readable with full control of what you&apos;re doing.&lt;/p&gt;
+	</description>
+    </item>
     <item>
       <title>Localizing your blog with JBake</title>
       <link>http://bashnesnos.github.io/blog/en/2014/jbake_locale.html</link>

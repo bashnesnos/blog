@@ -39,7 +39,7 @@
  lang: en_US
 </script>
     <div id="wrap">
-   	
+   
   <!-- Fixed navbar -->
         <div class="navbar navbar-inverse navbar-static-top" role="navigation">
           <div class="container">
@@ -55,22 +55,22 @@
             </div>
           </div>
         </div>
-    <div class="container">
+    <div class="container">	
 	<div class="page-header">
-		<h1>Blog</h1>
+		<h1>Migrating to MS SQL with bcp and Groovy</h1>
 	</div>
 
-  			<a href="/blog/en/2014/migrate_groovy.html"><h1>Migrating to MS SQL with bcp and Groovy</h1></a>
-  			<p>28 May 2014</p>
-  			
-  			<div class="container">
-  			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Migrating to MS SQL with bcp and Groovy" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-via="AlexanderSemelit" data-lang="en">Twitter</a>
-			<div class="g-plusone" data-size="medium" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html"></div>
-			<script type="IN/Share" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-counter="right"></script>
-			<div class="fb-like" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-			</div>
+	<p><em>28 May 2014</em></p>
 
-  			<p><p>First of all, why bcp and Groovy and not one of the existing tools like Flyway or something else?<br/>Well, migration is a one-off process to my mind, so why not script it; so you have a 100% percent of knowledge and control of how you do it. And having Groovy as a 'script' language brings lots of stuff to turn your 'script' into a tool really.</p><p>As an input I had a set of plain text pipe-delimeted table extracts. Before I could load those I needed to produce a new set of files having old data merged, transformed and new PK added (simple bigint increment). I could've loaded everything into the DB and do that with SQL, but why. At worst I had an 8 million records hashmap in memory, other then that everything was dumped into a file straight away.</p><p>On the good side, as a result of my migration I get a set of files which could be used to create/restore a ready-to-go DB wherever I need.</p><p>I've created a builder-like class Migrator to encapsulate file traversing, regex matching and writing to output. <a href="https://github.com/bashnesnos/scripts/blob/master/migrator/Migrator.groovy">Here's the source</a>. It also helps to increase readability I hope and reduces the size of the main migration script. It is going to be a core of my migration script.</p><p>Now we've came to the migration script itself, which basically will do the following:<br/>1. Define source files<br/>2. For each source file defined:<br/> 2.1. Get file<br/> 2.2. Transform each line and save it to a declared output file<br/> 2.3. Upload results</p><p>And here how we do it (ommiting the declaration and utility methods) and <a href="https://github.com/bashnesnos/scripts/blob/master/migrator/example/migrate.groovy">here's the example source too</a>:</p>
+	<div class="container">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-text="Migrating to MS SQL with bcp and Groovy" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-via="AlexanderSemelit" data-lang="en">Twitter</a>
+	<div class="g-plusone" data-size="medium" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html"></div>
+	<script type="IN/Share" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+	</div>
+
+
+	<p><p>First of all, why bcp and Groovy and not one of the existing tools like Flyway or something else?<br/>Well, migration is a one-off process to my mind, so why not script it; so you have a 100% percent of knowledge and control of how you do it. And having Groovy as a 'script' language brings lots of stuff to turn your 'script' into a tool really.</p><p>As an input I had a set of plain text pipe-delimeted table extracts. Before I could load those I needed to produce a new set of files having old data merged, transformed and new PK added (simple bigint increment). I could've loaded everything into the DB and do that with SQL, but why. At worst I had an 8 million records hashmap in memory, other then that everything was dumped into a file straight away.</p><p>On the good side, as a result of my migration I get a set of files which could be used to create/restore a ready-to-go DB wherever I need.</p><p>I've created a builder-like class Migrator to encapsulate file traversing, regex matching and writing to output. <a href="https://github.com/bashnesnos/scripts/blob/master/migrator/Migrator.groovy">Here's the source</a>. It also helps to increase readability I hope and reduces the size of the main migration script. It is going to be a core of my migration script.</p><p>Now we've came to the migration script itself, which basically will do the following:<br/>1. Define source files<br/>2. For each source file defined:<br/> 2.1. Get file<br/> 2.2. Transform each line and save it to a declared output file<br/> 2.3. Upload results</p><p>And here how we do it (ommiting the declaration and utility methods) and <a href="https://github.com/bashnesnos/scripts/blob/master/migrator/example/migrate.groovy">here's the example source too</a>:</p>
 <pre><code>migrator.with { 
     //defining a source: 
     source { //loading rainbow table: encrypted -&gt; unencrypted
@@ -166,45 +166,31 @@
     printTimePassed(&quot;Migration successful!&quot;)
 }
 </code></pre><p>It's a simplified example of what I had, but it has some key things like loading a hashmap with data, joining input files etc.<br/>As you can see, it is pretty straight-forward. I'll just add some comments for clarity:<br/>* Sources are processed in the definition order, one source file could defined as many times as you need (i.e. no unique checks at all).<br/>* Input files are defined with regexes as well (as I don't care about any date markes or case problems in the file name)<br/>* In this case, processing is triggered by the 'upload' closure which in it's turn is being called per each source when all the lines are processed. And only if the 'tableName' is specified (i.e. where to upload)<br/>* 'onMatch' - is a transformation closure, called for each line in the source file<br/>* 'doLast' - an Gradle-inspired callback closure, called per each file and when 'upload' closure (if any) has finished; so it's the last action taken against 'this' closure.<br/>* 'printTimePassed', 'terminate' - are Migrator's helper methods</p><p>And that's done. These scripts require nothing but Groovy (tested in 2.2.1 but will work in previous versions where typed Closures are allowed I guess too) or could be compiled and run just with Java (though migrate.groovy will require apache-cli apart from groovy-all). Pretty light-weight and readable with full control of what you're doing.</p></p>
-  			<p><a href="/blog/en/2014/migrate_groovy.html#disqus_thread">Comments</a></p>
 
-  			<a href="/blog/en/2014/jbake_locale.html"><h1>Localizing your blog with JBake</h1></a>
-  			<p>27 March 2014</p>
-  			
-  			<div class="container">
-  			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Localizing your blog with JBake" data-url="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-via="AlexanderSemelit" data-lang="en">Twitter</a>
-			<div class="g-plusone" data-size="medium" data-href="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html"></div>
-			<script type="IN/Share" data-url="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-counter="right"></script>
-			<div class="fb-like" data-href="http://bashnesnos.github.io/blog/en/2014/jbake_locale.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-			</div>
+	<div class="container">
+	<a href="https://twitter.com/share" class="twitter-share-button" data-text="Migrating to MS SQL with bcp and Groovy" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-via="AlexanderSemelit" data-lang="en">Twitter</a>
+	<div class="g-plusone" data-size="medium" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html"></div>
+	<script type="IN/Share" data-url="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-counter="right"></script>
+	<div class="fb-like" data-href="http://bashnesnos.github.io/blog/en/2014/migrate_groovy.html" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+	</div>
 
-  			<p><p>Let's get it started.</p><p>I was inspired by this post <a href="http://melix.github.io/blog/2014/02/hosting-jbake-github.html">about authoring a blog with JBake and jbake-gradle-plugin</a>; so my first post would be on the same topic (my apologies for too many 'posts' and 'blogs' in one sentence). First of all because it has something to do with Gradle (which I love) and JBake (which is something to learn) in the second turn.</p><p>My first time blog was generated, looked nice. What can one wish more? Well, I wish there was kind of a localization capability. It's not common at all, but when you want something and it is not there - you are not completely satisfied. So I decided to try and <del>break everything</del>add such a capability.</p><p>The idea is: localized pages during the build are put to a separate folder. Since the pages are static it is the cheapest and straight-forward option. Switching between the localized/original is to be operated by URL manipulation in javascript. E.g. the following transformation will occur:</p>
-<pre><code>src\jbake\content\blog\2014\jbake_locale.md -&gt; \blog\2014\jbake_locale.html (original)
-src\jbake\content\blog\2014\en_jbake_locale.md -&gt; \en\blog\2014\jbake_locale.html (localized)
-</code></pre><p>I.e. to switch back to the original in the given example, we would to remove <strong>en\</strong> from the URL. Which will happen if you click <a href="/blog/2014/jbake_locale.html">here</a></p><p>By implementing that feature we are saving ourselves from copying and maintaining all the folder structure in our sources for all the kinds of locales. A nice and automatic tool will bake it for us.</p><p>Convention is the following:<br/>* Localized post file name should differ from original only by <em>localeId_</em> prefix (in my case <strong>en_</strong>)<br/>* Add the localized templates into jbake.properties<br/>* Localized template name should start from <em>localeId_</em> (in my case <strong>en_</strong>)<br/>* Keep the <em>localeId_</em> in mind when populating links and includes inside of the templates</p><p>I will open you the secret: <em>localeId_</em> is being derived from your template declarations in jbake.properties. If you have a template with name <strong>en_</strong>post, <strong>en_</strong> would become one of your <em>localeId_</em></p><p>Here is jbake.properties of my blog:</p>
-<pre><code>site.host=http://localhost:8080
-template.en_post.file=en_post.ftl
-template.en_page.file=en_page.ftl
-template.en_index.file=en_index.ftl
-template.en_archive.file=en_archive.ftl
-template.en_feed.file=en_feed.ftl
-render.tags=false
-</code></pre><p>The localized templates list is bigger though (en_menu, en_footer are not an outstanding document types, they are just being included by other localized templates):</p>
-<pre><code>en_archive.ftl
-en_feed.ftl
-en_footer.ftl
-en_header.ftl
-en_index.ftl
-en_menu.ftl
-en_page.ftl
-en_post.ftl
-</code></pre><p>At the moment it works for Freemarker only, I would go on with others if my enhancement would be approved. And in that case it would be my first relatively significant contribution to the open-source!</p></p>
-  			<p><a href="/blog/en/2014/jbake_locale.html#disqus_thread">Comments</a></p>
-	
-	<hr />
-	
-	<p>Older posts are available in the <a href="/blog/en/archive.html">archive</a>.</p>
-
+	<hr>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'bashneblog'; // required: replace example with your forum shortname
+		var disqus_identifier = '/en/2014/migrate_groovy.html';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
 		</div>
 		<div id="push"></div>
     </div>
